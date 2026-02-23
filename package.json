@@ -1,0 +1,25 @@
+{
+  "name": "faaalapessoal",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digobranco/FaaalaPessoal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/digobranco/FaaalaPessoal/issues"
+  },
+  "homepage": "https://github.com/digobranco/FaaalaPessoal#readme",
+  "devDependencies": {
+    "vite": "^7.3.1",
+    "vite-plugin-handlebars": "^2.0.0"
+  }
+}

@@ -16,27 +16,7 @@
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <a href="index.html" class="nav-brand">Faaala Pessoal</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="ferramentas.html" class="active">Ferramentas</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-            <div class="nav-social">
-                <a href="https://www.instagram.com/faaalapessoal/" target="_blank" title="Instagram"><img
-                        src="img/instagram.png" alt="Instagram" class="social-icon"></a>
-                <a href="https://www.youtube.com/@faaalapessoal_oficial" target="_blank" title="YouTube"><img
-                        src="img/youtube.png" alt="YouTube" class="social-icon"></a>
-            </div>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
+    {{> header}}
 
     <main class="main">
         <!-- Hero -->
@@ -67,7 +47,8 @@
                     <p>Calcule quantos pontos você pode acumular com seu cartão de crédito baseado nos seus gastos
                         mensais. Descubra as melhores estratégias para maximizar seus pontos.</p>
                     <div>
-                        <span class="tool-badge soon">⏳ Em breve</span>
+                        <span class="tool-badge available">✅ Disponível</span>
+                        <a href="/simulador-pontos/index.html" class="tool-link">Acessar simulador →</a>
                     </div>
                 </div>
                 <!--<div class="tool-card">
@@ -92,22 +73,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div>
-                <div class="footer-brand-text">Faaala Pessoal</div>
-                <div class="footer-info">Aprenda a viajar melhor gastando menos</div>
-            </div>
-            <ul class="footer-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="ferramentas.html">Ferramentas</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </div>
-        <div class="footer-bottom">© 2025 Faaala Pessoal. Todos os direitos reservados.</div>
-    </footer>
+    {{> footer}}
 
     <script src="js/main.js"></script>
 </body>
