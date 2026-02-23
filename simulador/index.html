@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Câmbio | Faaala Pessoal</title>
+    <meta name="description"
+        content="Simulador de compra de dólar e euro do Faaala Pessoal. Descubra qual a melhor forma de comprar moeda estrangeira.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar (same as main site) -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="../index.html" class="nav-brand">Faaala Pessoal</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="../ferramentas.html" class="active">Ferramentas</a></li>
+                <li><a href="../sobre.html">Sobre</a></li>
+                <li><a href="../contato.html">Contato</a></li>
+            </ul>
+            <div class="nav-social">
+                <a href="https://www.instagram.com/faaalapessoal/" target="_blank" title="Instagram">📸</a>
+                <a href="https://www.youtube.com/@faaalapessoal_oficial" target="_blank" title="YouTube">▶️</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main">
+        <!-- Hero -->
+        <section class="hero" style="padding: 60px 24px 20px;">
+            <div class="hero-content">
+                <div class="hero-badge">💱 Ferramenta gratuita</div>
+                <h1>Simulador de <span>Câmbio</span></h1>
+                <p class="hero-description">Descubra quanto custaria comprar dólar ou euro em diferentes estratégias.
+                    Informe o valor desejado e o período, e veja a comparação entre comprar na melhor cotação, na pior,
+                    ou de forma planejada.</p>
+            </div>
+        </section>
+
+        <!-- Form -->
+        <section class="section" style="padding-top: 32px;">
+            <div class="sim-card">
+                <h2 class="sim-section-title">⚙️ Configure sua Simulação</h2>
+                <form id="simulationForm">
+                    <div class="sim-form-grid">
+                        <div class="sim-form-group">
+                            <label for="currency">Moeda</label>
+                            <select id="currency">
+                                <option value="usd">🇺🇸 Dólar Americano (USD)</option>
+                                <option value="eur">🇪🇺 Euro (EUR)</option>
+                            </select>
+                        </div>
+                        <div class="sim-form-group">
+                            <label for="amount">Valor Total (<span id="currencyLabel">USD</span>)</label>
+                            <div class="sim-input-wrapper">
+                                <span class="sim-input-prefix" id="currencySymbol">$</span>
+                                <input type="number" id="amount" min="1" step="0.01" placeholder="1.000,00" required>
+                            </div>
+                        </div>
+                        <div class="sim-form-group">
+                            <label for="startDate">Mês/Ano Inicial</label>
+                            <input type="month" id="startDate" required>
+                        </div>
+                        <div class="sim-form-group">
+                            <label for="endDate">Mês/Ano Final</label>
+                            <input type="month" id="endDate" required>
+                        </div>
+                    </div>
+                    <div id="periodInfo" class="sim-period-info sim-hidden"></div>
+                    <div id="errorMessage" class="sim-error-message sim-hidden"></div>
+                    <button type="submit" id="submitBtn" class="btn btn-primary"
+                        style="width:100%;justify-content:center;margin-top:8px;">
+                        Simular Compra →
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section id="resultsSection" class="section sim-hidden" style="padding-top:0;">
+            <h2 class="sim-section-title" style="text-align:center;">📊 Resultado da Simulação</h2>
+            <p id="resultsSummary" class="sim-results-summary"></p>
+            <div class="strategies-grid" id="strategiesGrid"></div>
+
+            <div class="sim-disclaimer">
+                <strong>ℹ️ Aviso:</strong> Os valores são baseados na cotação de venda do Banco Central do Brasil.
+                <strong>Não estão incluídos</strong> spread bancário, IOF, ou qualquer outro custo adicional.
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand-text">Faaala Pessoal</div>
+                <div class="footer-info">Dados: Banco Central do Brasil (BCB) • Cotações de Jan/2024 a Fev/2026</div>
+            </div>
+            <ul class="footer-links">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="../ferramentas.html">Ferramentas</a></li>
+                <li><a href="../sobre.html">Sobre</a></li>
+                <li><a href="../contato.html">Contato</a></li>
+                <li><a href="https://www.instagram.com/faaalapessoal/" target="_blank">Instagram</a></li>
+                <li><a href="https://www.youtube.com/@faaalapessoal_oficial" target="_blank">YouTube</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">© 2025 Faaala Pessoal. Todos os direitos reservados.</div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

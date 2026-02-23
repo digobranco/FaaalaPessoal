@@ -1,0 +1,14 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Node (caso use futuramente)
+node_modules/
+package-lock.json
+
+# Gemini/AI
+.gemini/
