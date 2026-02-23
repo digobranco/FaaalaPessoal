@@ -154,6 +154,19 @@ img {
     transform: translateY(-1px);
 }
 
+.social-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    object-fit: contain;
+    vertical-align: middle;
+    transition: var(--transition);
+}
+
+.nav-social a:hover .social-icon {
+    filter: brightness(0) saturate(100%) invert(26%) sepia(89%) saturate(2261%) hue-rotate(234deg) brightness(91%) contrast(101%);
+}
+
 /* Hamburger */
 .hamburger {
     display: none;
