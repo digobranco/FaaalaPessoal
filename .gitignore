@@ -6,7 +6,8 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Node (caso use futuramente)
+# Build
+dist/
 node_modules/
 package-lock.json
 
