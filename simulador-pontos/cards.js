@@ -65,7 +65,7 @@ export const CARDS = [
     {
         id: 'inter-prime-mastercard-black',
         name: 'Inter Prime Mastercard Black',
-        pointsPerUnit: 2.5,
+        pointsPerUnit: 0.4,
         currency: 'BRL',
         type: 'points',
         category: 'Premium',

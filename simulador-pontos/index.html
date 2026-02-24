@@ -29,8 +29,32 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" style="padding-top: 0;">
             <div class="sim-container">
+                <div class="sim-card comparer-card">
+                    <h2 class="sim-section-title">📊 Comparativo: Potencial de Acúmulo por Ano</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">
+                        Estimativa de pontos acumulados por ano considerando gastos em diversos cartões e a cotação
+                        atual do dólar.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="comparer-table">
+                            <thead>
+                                <tr>
+                                    <th>Pts / US$</th>
+                                    <th>R$ 1.000</th>
+                                    <th>R$ 2.000</th>
+                                    <th>R$ 3.000</th>
+                                    <th>R$ 5.000</th>
+                                    <th>R$ 10.000</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparerTableBody">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <div class="sim-card">
                     <h2 class="sim-section-title">💳 Gastos com Cartão</h2>
                     <form id="pointsForm">
@@ -97,7 +121,17 @@
                                     <option value="110">110%</option>
                                     <option value="120">120%</option>
                                     <option value="150">150%</option>
+                                    <option value="custom">Personalizado...</option>
                                 </select>
+                            </div>
+                            <!-- Custom Transfer Bonus Field (hidden by default) -->
+                            <div class="sim-form-group sim-hidden" id="customTransferGroup" style="margin-top: 12px;">
+                                <label for="customTransferBonus">Bônus Personalizado (%)</label>
+                                <div class="sim-input-wrapper">
+                                    <input type="number" id="customTransferBonus" placeholder="105" min="0">
+                                    <span class="sim-input-suffix"
+                                        style="margin-left: 8px; color: var(--text-secondary);">%</span>
+                                </div>
                             </div>
                         </div>
 
@@ -136,6 +170,10 @@
                         <div class="strategy-row">
                             <span>Bônus de Transferência aplicado:</span>
                             <span id="bonusAppliedDisplay">--</span>
+                        </div>
+                        <div class="strategy-row" id="transferBonusGainRow">
+                            <span>Pontos Ganhos no Bônus:</span>
+                            <span id="transferBonusGain">--</span>
                         </div>
                         <div class="strategy-total">
                             <span>Total Final Estimado:</span>

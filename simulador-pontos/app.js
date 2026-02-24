@@ -10,12 +10,16 @@ const elements = {
     bonusAmount: document.getElementById('bonusAmount'),
     bonusMultiplier: document.getElementById('bonusMultiplier'),
     transferBonus: document.getElementById('transferBonus'),
+    customTransferGroup: document.getElementById('customTransferGroup'),
+    customTransferBonus: document.getElementById('customTransferBonus'),
+    comparerTableBody: document.getElementById('comparerTableBody'),
     resultsSection: document.getElementById('resultsSection'),
     totalPointsResult: document.getElementById('totalPointsResult'),
     currentDollarDisplay: document.getElementById('currentDollarDisplay'),
     cardPointsYear: document.getElementById('cardPointsYear'),
     bonusPointsTotal: document.getElementById('bonusPointsTotal'),
     bonusAppliedDisplay: document.getElementById('bonusAppliedDisplay'),
+    transferBonusGain: document.getElementById('transferBonusGain'),
     finalTotalPoints: document.getElementById('finalTotalPoints'),
 };
 
@@ -25,6 +29,7 @@ let usdRate = 5.00; // Fallback
 document.addEventListener('DOMContentLoaded', async () => {
     populateCards();
     await fetchUSDRate();
+    populateComparerTable();
     setupEventListeners();
 });
 
@@ -50,6 +55,32 @@ function populateCards() {
     });
 }
 
+function populateComparerTable() {
+    const spends = [1000, 2000, 3000, 5000, 10000];
+    const rates = [1, 2, 2.2, 2.5, 3, 5];
+
+    elements.comparerTableBody.innerHTML = '';
+
+    rates.forEach(rate => {
+        const row = document.createElement('tr');
+
+        // Rate column
+        const rateCell = document.createElement('td');
+        rateCell.innerHTML = `<strong>${rate.toLocaleString('pt-BR')}</strong>`;
+        row.appendChild(rateCell);
+
+        // Spend columns
+        spends.forEach(spend => {
+            const cell = document.createElement('td');
+            const monthlyPoints = (spend / usdRate) * rate * 12;
+            cell.textContent = Math.round(monthlyPoints).toLocaleString('pt-BR');
+            row.appendChild(cell);
+        });
+
+        elements.comparerTableBody.appendChild(row);
+    });
+}
+
 function setupEventListeners() {
     elements.cardSelect.addEventListener('change', (e) => {
         const card = CARDS.find(c => c.id === e.target.value);
@@ -68,6 +99,14 @@ function setupEventListeners() {
         }
     });
 
+    elements.transferBonus.addEventListener('change', (e) => {
+        if (e.target.value === 'custom') {
+            elements.customTransferGroup.classList.remove('sim-hidden');
+        } else {
+            elements.customTransferGroup.classList.add('sim-hidden');
+        }
+    });
+
     elements.form.addEventListener('submit', (e) => {
         e.preventDefault();
         calculate();
@@ -80,7 +119,13 @@ function calculate() {
     const spend = parseFloat(elements.monthlySpend.value) || 0;
     const bonusVal = parseFloat(elements.bonusAmount.value) || 0;
     const bonusMult = parseFloat(elements.bonusMultiplier.value) || 0;
-    const transferPct = parseFloat(elements.transferBonus.value) / 100;
+
+    let transferPct = 0;
+    if (elements.transferBonus.value === 'custom') {
+        transferPct = (parseFloat(elements.customTransferBonus.value) || 0) / 100;
+    } else {
+        transferPct = (parseFloat(elements.transferBonus.value) || 0) / 100;
+    }
 
     if (!card) return;
 
@@ -101,13 +146,16 @@ function calculate() {
     const totalBonusPoints = bonusVal * bonusMult;
 
     // Apply transfer bonus
-    const finalTotal = (annualCardPoints + totalBonusPoints) * (1 + transferPct);
+    const subtotal = annualCardPoints + totalBonusPoints;
+    const bonusGained = subtotal * transferPct;
+    const finalTotal = subtotal + bonusGained;
 
     // Update UI
     elements.totalPointsResult.textContent = Math.round(finalTotal).toLocaleString('pt-BR');
     elements.cardPointsYear.textContent = Math.round(annualCardPoints).toLocaleString('pt-BR') + ' pts';
     elements.bonusPointsTotal.textContent = Math.round(totalBonusPoints).toLocaleString('pt-BR') + ' pts';
-    elements.bonusAppliedDisplay.textContent = (transferPct * 100) + '%';
+    elements.bonusAppliedDisplay.textContent = (transferPct * 100).toFixed(0) + '%';
+    elements.transferBonusGain.textContent = '+' + Math.round(bonusGained).toLocaleString('pt-BR') + ' pts';
     elements.finalTotalPoints.textContent = Math.round(finalTotal).toLocaleString('pt-BR') + ' pts/milhas';
 
     elements.resultsSection.classList.remove('sim-hidden');
