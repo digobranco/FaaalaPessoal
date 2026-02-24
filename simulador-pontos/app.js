@@ -41,6 +41,7 @@ async function fetchUSDRate() {
 }
 
 function populateCards() {
+    CARDS.sort((a, b) => a.ordem - b.ordem);
     CARDS.forEach(card => {
         const option = document.createElement('option');
         option.value = card.id;
