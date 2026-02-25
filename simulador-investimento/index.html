@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S6FGED1HT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8S6FGED1HT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Investimentos | FaaalaPessoal</title>
+    <meta name="description"
+        content="Simule a evolução do seu patrimônio ou planeje sua aposentadoria com nosso simulador completo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    {{> header}}
+
+    <main class="main">
+        <section class="hero" style="padding: 60px 24px 20px;">
+            <div class="hero-content">
+                <div class="hero-badge">📈 Ferramenta de Planejamento</div>
+                <h1>Simulador de <span>Investimentos</span></h1>
+                <p class="hero-description">Calcule a evolução do seu dinheiro e planeje sua liberdade financeira com
+                    inteligência.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="sim-container">
+
+                <!-- Mode Switcher -->
+                <div class="mode-tabs">
+                    <button class="tab-btn active" data-mode="growth">Modo Acúmulo</button>
+                    <button class="tab-btn" data-mode="retirement">Modo Aposentadoria</button>
+                </div>
+
+                <div class="sim-grid">
+                    <!-- Form Card -->
+                    <div class="sim-card">
+                        <form id="simulatorForm">
+                            <div class="sim-form-sections">
+                                <!-- Growth/Retirement Left -->
+                                <div id="formLeft">
+                                    <!-- Growth Mode Fields -->
+                                    <div id="growthFields">
+                                        <h2 class="sim-section-title">💰 Seus Dados</h2>
+                                        <div class="sim-form-grid">
+                                            <div class="sim-form-group">
+                                                <label for="initialCapital">Capital Inicial (R$)</label>
+                                                <div class="sim-input-wrapper">
+                                                    <input type="number" id="initialCapital" value="1000" min="0"
+                                                        step="100">
+                                                </div>
+                                            </div>
+                                            <div class="sim-form-group">
+                                                <label for="monthlyContribution">Aporte Mensal (R$)</label>
+                                                <div class="sim-input-wrapper">
+                                                    <input type="number" id="monthlyContribution" value="500" min="0"
+                                                        step="50">
+                                                </div>
+                                            </div>
+                                            <div class="sim-form-group">
+                                                <label for="timeYears">Tempo (Anos)</label>
+                                                <input type="number" id="timeYears" value="10" min="1" max="60">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Retirement Mode Fields (Hidden by default) -->
+                                    <div id="retirementFields" class="hidden">
+                                        <h2 class="sim-section-title">🏖️ Sua Aposentadoria</h2>
+                                        <div class="sim-form-grid">
+                                            <div class="sim-form-group">
+                                                <label for="initialCapitalRet">Capital Inicial Atual (R$)</label>
+                                                <div class="sim-input-wrapper">
+                                                    <input type="number" id="initialCapitalRet" value="0" min="0"
+                                                        step="1000">
+                                                </div>
+                                            </div>
+                                            <div class="sim-form-group">
+                                                <label for="desiredIncome">Renda Mensal Desejada (R$)</label>
+                                                <div class="sim-input-wrapper">
+                                                    <input type="number" id="desiredIncome" value="5000" min="0"
+                                                        step="100">
+                                                </div>
+                                            </div>
+                                            <div class="sim-form-group">
+                                                <label for="currentAge">Idade Atual</label>
+                                                <input type="number" id="currentAge" value="30" min="0">
+                                            </div>
+                                            <div class="sim-form-group">
+                                                <label for="retirementAge">Idade de Aposentadoria</label>
+                                                <input type="number" id="retirementAge" value="65" min="1">
+                                            </div>
+                                            <div class="sim-form-group">
+                                                <label for="retirementType">Tipo de Usufruto</label>
+                                                <select id="retirementType">
+                                                    <option value="perpetual">Renda Perpétua (Viver de juros)</option>
+                                                    <option value="depletion">Consumir Capital (Até os X anos)</option>
+                                                </select>
+                                            </div>
+                                            <div class="sim-form-group hidden" id="depletionYearsGroup">
+                                                <label for="depletionAge">Até qual idade?</label>
+                                                <input type="number" id="depletionAge" value="95" min="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Rates Section Right (Common) -->
+                                <div id="formRight">
+                                    <h2 class="sim-section-title">📊 Taxas e Inflação</h2>
+                                    <div class="sim-form-grid">
+                                        <div class="sim-form-group">
+                                            <label for="interestRate">Juros A (Anual %)</label>
+                                            <input type="number" id="interestRate" value="10" step="0.1">
+                                        </div>
+                                        <div class="sim-form-group">
+                                            <label for="interestRateB">Juros B (Anual % - Opcional)</label>
+                                            <input type="number" id="interestRateB" placeholder="Ex: 12" step="0.1">
+                                        </div>
+                                        <div class="sim-form-group">
+                                            <div class="checkbox-group" style="margin-top: 28px;">
+                                                <input type="checkbox" id="adjustByInflation" checked
+                                                    title="Aumenta o valor que você guarda todo mês de acordo com a inflação">
+                                                <label for="adjustByInflation">Corrigir aporte mensal?</label>
+                                            </div>
+                                        </div>
+                                        <div class="sim-form-group">
+                                            <label for="inflationRate">Inflação (Anual %)</label>
+                                            <input type="number" id="inflationRate" value="5" step="0.1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"
+                                style="width: 100%; justify-content: center; margin-top: 24px;">
+                                Calcular Agora →
+                            </button>
+                        </form>
+                    </div>
+                    <div id="resultsCol" class="hidden">
+                        <!-- Summary Cards -->
+                        <div class="results-summary">
+                            <div class="result-card main-result">
+                                <span class="result-label" id="mainResultLabel">Patrimônio Estimado</span>
+                                <span class="result-value" id="mainResultValue">R$ 0,00</span>
+                                <span class="result-sub-label" id="secondResultLabel">Valor Real (Hoje): R$ 0,00 <span
+                                        class="info-icon"
+                                        title="O valor que o dinheiro acumulado valeria hoje, descontando a inflação.">?</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Chart Card -->
+                        <div class="sim-card chart-card">
+                            <canvas id="resultsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Detail Section (Hidden by default) -->
+                <div id="comparisonSection" class="sim-card hidden" style="margin-top: 24px;">
+                    <h2 class="sim-section-title">⚖️ Comparativo de Taxas</h2>
+                    <div class="comparison-grid">
+                        <div class="comp-box">
+                            <span class="comp-title" id="rateATitle">Cenário A</span>
+                            <span class="comp-val" id="valA">R$ 0,00</span>
+                            <div class="comp-detail" id="detailA">
+                                <span>Investido: R$ 0,00</span>
+                                <span>Juros: R$ 0,00</span>
+                            </div>
+                        </div>
+                        <div class="comp-box highlight">
+                            <span class="comp-title" id="rateBTitle">Cenário B</span>
+                            <span class="comp-val" id="valB">R$ 0,00</span>
+                            <div class="comp-detail" id="detailB">
+                                <span>Investido: R$ 0,00</span>
+                                <span>Juros: R$ 0,00</span>
+                            </div>
+                        </div>
+                        <div class="comp-box diff">
+                            <span class="comp-title">Diferença</span>
+                            <span class="comp-val" id="valDiff">R$ 0,00</span>
+                            <div class="comp-detail">
+                                <span>Ganho adicional do Cenário B</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="app.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
