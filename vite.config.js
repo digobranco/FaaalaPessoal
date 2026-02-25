@@ -17,7 +17,7 @@ export default defineConfig({
                 contato: resolve(__dirname, 'contato.html'),
                 simulador: resolve(__dirname, 'simulador/index.html'),
                 'simulador-pontos': resolve(__dirname, 'simulador-pontos/index.html'),
-                'simulador-investimento': resolve(__dirname, 'simulador-investimento/index.html'),
+                //'simulador-investimento': resolve(__dirname, 'simulador-investimento/index.html'),
             },
         },
     },
