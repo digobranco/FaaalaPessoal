@@ -48,6 +48,8 @@
     font-family: var(--font);
     font-size: 0.95rem;
     transition: var(--transition);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .sim-form-group input:focus,
@@ -61,6 +63,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .sim-input-prefix {
@@ -149,8 +152,17 @@
 }
 
 @media (max-width: 600px) {
+    .sim-card {
+        padding: 20px;
+    }
+
     .sim-form-grid {
         grid-template-columns: 1fr;
+    }
+
+    .table-responsive {
+        margin: 0 -20px;
+        padding: 0 20px;
     }
 }
 
