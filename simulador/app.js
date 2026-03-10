@@ -1,3 +1,5 @@
+import { COTACOES } from './data.js';
+
 // ===== App State =====
 const elements = {};
 const MONTH_NAMES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];

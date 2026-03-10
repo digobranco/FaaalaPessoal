@@ -1,0 +1,315 @@
+/* Promo Calendar Styles */
+:root {
+    --smiles-color: #FF5A00;
+    --azul-color: #003399;
+    --latam-color: #FF0000;
+    --livelo-color: #E6007E;
+    --esfera-color: #000000;
+    --caixa-color: #005CA9;
+}
+
+.promo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Controls Card */
+.controls-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+.year-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.year-nav h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.filter-group select {
+    padding: 10px 14px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background: #F9FAFB;
+    transition: all 0.2s;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+}
+
+/* Toggle Group */
+.toggle-group {
+    display: flex;
+    background: #F3F4F6;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.toggle-btn {
+    flex: 1;
+    border: none;
+    background: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.toggle-btn.active {
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Anniversary Bar */
+.anniversary-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.anniversary-badge {
+    background: #F0F9FF;
+    border: 1px solid #BAE6FD;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #0369A1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.anniversary-badge span {
+    font-weight: 700;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.month-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid #F3F4F6;
+    transition: transform 0.2s;
+}
+
+.month-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+.month-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    border-bottom: 1px solid #F3F4F6;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promo-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.promo-badge {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promo-badge:hover {
+    filter: brightness(0.95);
+    transform: scale(1.02);
+}
+
+.promo-badge .bonus-text {
+    font-weight: 800;
+}
+
+.empty-month {
+    color: #9CA3AF;
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Table Card */
+.table-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.promo-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.promo-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-bottom: 2px solid #F3F4F6;
+}
+
+.promo-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #F3F4F6;
+    font-size: 0.9rem;
+}
+
+/* Timeline View (Mobile) */
+.timeline-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 16px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 45px;
+    top: 40px;
+    bottom: -20px;
+    width: 2px;
+    background: #E5E7EB;
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+.timeline-date {
+    width: 90px;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-align: right;
+    padding-top: 10px;
+}
+
+.timeline-content {
+    flex-grow: 1;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5vh auto;
+    padding: 32px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #9CA3AF;
+    cursor: pointer;
+}
+
+/* Utilities */
+.sim-hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .calendar-grid {
+        display: none !important;
+    }
+
+    .timeline-view {
+        display: flex !important;
+    }
+
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+}

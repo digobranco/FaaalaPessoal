@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S6FGED1HT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8S6FGED1HT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Promoções | FaaalaPessoal</title>
+    <meta name="description"
+        content="Calendário histórico de promoções de transferência bonificada entre programas de fidelidade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    {{> header}}
+
+    <main class="main">
+        <section class="hero" style="padding: 60px 24px 20px;">
+            <div class="hero-content">
+                <div class="hero-badge">📅 Ferramenta de Análise</div>
+                <h1>Calendário de <span>Promoções</span></h1>
+                <p class="hero-description">Acompanhe o histórico de bônus de transferência e planeje suas próximas
+                    estratégias baseado nos aniversários dos programas.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="promo-container">
+                <!-- Controls & Filters -->
+                <div class="controls-card">
+                    <div class="year-nav">
+                        <button id="prevYear" class="btn btn-secondary btn-sm">← Ano Anterior</button>
+                        <h2 id="currentYearDisplay">2026</h2>
+                        <button id="nextYear" class="btn btn-secondary btn-sm">Próximo Ano →</button>
+                    </div>
+
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="filterDest">Destino</label>
+                            <select id="filterDest">
+                                <option value="all">Todos os Programas</option>
+                                <option value="Smiles">Smiles</option>
+                                <option value="Azul">Azul</option>
+                                <option value="Latam">Latam</option>
+                                <option value="Livelo">Livelo</option>
+                                <option value="Esfera">Esfera</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterSource">Origem (Banco)</label>
+                            <select id="filterSource">
+                                <option value="all">Todas as Origens</option>
+                                <!-- Populated dynamically via JS -->
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="viewToggle">Visualização</label>
+                            <div class="toggle-group">
+                                <button id="viewCalendar" class="toggle-btn active" title="Calendário">📅</button>
+                                <button id="viewTable" class="toggle-btn" title="Tabela">📊</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anniversary Bar -->
+                <div id="anniversaryBar" class="anniversary-bar">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Main Display Area -->
+                <div id="calendarDisplay" class="calendar-grid">
+                    <!-- 12 months populated via JS -->
+                </div>
+
+                <div id="tableDisplay" class="table-card sim-hidden">
+                    <div class="table-responsive">
+                        <table class="promo-table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Origem</th>
+                                    <th>Destino</th>
+                                    <th>Bônus Máx.</th>
+                                    <th>Participantes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promoTableBody">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Timeline View (Mobile only handled by CSS) -->
+                <div id="timelineDisplay" class="timeline-view sim-hidden">
+                    <!-- Populated via JS -->
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Promo Details -->
+    <div id="promoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalData">
+                <!-- Data populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    {{> footer}}
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>
