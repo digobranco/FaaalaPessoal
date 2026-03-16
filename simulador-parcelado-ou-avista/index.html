@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S6FGED1HT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8S6FGED1HT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIX ou Parcelado? | FaaalaPessoal</title>
+    <meta name="description"
+        content="Descubra se vale mais a pena pagar à vista no PIX com desconto ou parcelar no cartão de crédito e deixar o dinheiro rendendo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    {{> header}}
+
+    <main class="main">
+        <section class="hero" style="padding: 60px 24px 20px;">
+            <div class="hero-content">
+                <div class="hero-badge">🏆 Ferramenta gratuita</div>
+                <h1>PIX ou <span>Parcelado?</span></h1>
+                <p class="hero-description">Descubra se o desconto oferecido à vista no PIX realmente compensa ou se
+                    vale mais a pena parcelar no cartão e investir o dinheiro.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="sim-container">
+                <div class="sim-card">
+                    <h2 class="sim-section-title">💸 Dados da Compra e Investimento</h2>
+                    <form id="calcForm">
+                        <div class="sim-form-grid">
+                            <div class="sim-form-group">
+                                <label for="totalValue">Valor Total da Compra (a prazo)</label>
+                                <div class="sim-input-wrapper">
+                                    <span class="sim-input-prefix">R$</span>
+                                    <input type="number" id="totalValue" placeholder="10.000,00" step="0.01" required
+                                        min="0">
+                                </div>
+                            </div>
+                            <div class="sim-form-group">
+                                <label for="pixDiscount">Desconto no PIX/À Vista</label>
+                                <div class="sim-input-wrapper">
+                                    <input type="number" id="pixDiscount" placeholder="10" step="0.1" required min="0"
+                                        max="100">
+                                    <span class="sim-input-suffix">%</span>
+                                </div>
+                            </div>
+                            <div class="sim-form-group">
+                                <label for="installments">Número de Parcelas (Sem Juros)</label>
+                                <div class="sim-input-wrapper">
+                                    <input type="number" id="installments" placeholder="12" required min="1" max="48">
+                                    <span class="sim-input-suffix">x</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sim-bonus-section" style="margin-top: 24px;">
+                            <h2 class="sim-section-title">📈 Taxas e Rendimentos</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                                Preenchemos as taxas abaixo automaticamente com os dados oficiais de hoje para
+                                facilitar, mas você pode mudar.
+                            </p>
+                            <div class="sim-form-grid">
+                                <div class="sim-form-group">
+                                    <label for="selicRate">Taxa Selic Atual</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="selicRate" placeholder="10.75" step="0.01" required
+                                            min="0">
+                                        <span class="sim-input-suffix">% ao ano</span>
+                                    </div>
+                                    <small id="selicLoadingMsg"
+                                        style="color:var(--primary); font-size:0.75rem;">Buscando taxa atual...</small>
+                                </div>
+                                <div class="sim-form-group">
+                                    <label for="cdiPercentage">Rendimento do seu Investimento</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="cdiPercentage" value="100" step="1" required min="0">
+                                        <span class="sim-input-suffix">% do CDI</span>
+                                    </div>
+                                </div>
+                                <div class="sim-form-group">
+                                    <label for="pointsPerDollar">Pontos do Cartão</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="pointsPerDollar" value="2.0" step="0.1" required
+                                            min="0">
+                                        <span class="sim-input-suffix">pts / US$</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; justify-content: center; margin-top: 32px;">
+                            Comparar Agora →
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultsSection" class="sim-card sim-hidden results-display">
+
+                    <div class="verdict-banner" id="verdictBanner">
+                        <h3 id="verdictTitle">Aguardando cálculo...</h3>
+                        <p id="verdictSubtitle">...</p>
+                    </div>
+
+                    <div class="strategy-box" style="margin-top: 24px;">
+                        <div class="strategy-header">Resumo Financeiro</div>
+                        <div class="strategy-row">
+                            <span>O valor à vista (PIX) é de:</span>
+                            <strong id="resPixValue">R$ 0,00</strong>
+                        </div>
+                        <div class="strategy-row">
+                            <span>O valor da sua parcela (Cartão) é de:</span>
+                            <strong id="resInstallmentValue">R$ 0,00</strong>
+                        </div>
+                        <div class="strategy-row">
+                            <span>Ao final do pagamento parcelado, sobrou ou faltou:</span>
+                            <strong id="resFinalBalance" style="font-size: 1.2rem;">R$ 0,00</strong>
+                        </div>
+                    </div>
+
+                    <div class="strategy-box" style="margin-top: 24px;">
+                        <div class="strategy-header">Milhas & Pontos (Bônus do Cartão)</div>
+                        <div class="strategy-row">
+                            <span>Pagando no cartão, você acumulará:</span>
+                            <strong id="resPoints" style="color: var(--primary);">0 pts</strong>
+                        </div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px;">
+                            * Considerando Dólar a <span id="resDollarRate">R$ 0,00</span> e <span
+                                id="resPointsRate">2.0</span> pontos por dólar.
+                        </div>
+                    </div>
+
+                    <!-- Tabela de Amortização -->
+                    <div style="margin-top: 32px;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--white);">📊 Fluxo do Dinheiro
+                            Mês a Mês</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                            Na simulação do "Parcelado", assumimos que você pegou o valor que usaria no PIX hoje e
+                            investiu. Todo mês você saca o valor da parcela.
+                        </p>
+                        <div class="table-responsive">
+                            <table class="comparer-table" style="font-size: 0.85rem;">
+                                <thead>
+                                    <tr>
+                                        <th>Mês</th>
+                                        <th>Saldo Inicial</th>
+                                        <th>Rend. Bruto</th>
+                                        <th>IR</th>
+                                        <th>Rend. Líquido</th>
+                                        <th>Parcela (Saque)</th>
+                                        <th>Saldo Final</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="amortizationTableBody">
+                                    <!-- JS populated -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer Section -->
+                    <div class="disclaimer-alert" id="disclaimerBox">
+                        <!-- Populated by JS -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>
