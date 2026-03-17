@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S6FGED1HT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8S6FGED1HT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Direto ou Ganhar Pontos? | FaaalaPessoal</title>
+    <meta name="description"
+        content="Vale a pena pagar um pouco mais caro no produto apenas para ganhar os pontos da promoção? Descubra o custo do seu milheiro nesta calculadora.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    {{> header}}
+
+    <main class="main">
+        <section class="hero" style="padding: 60px 24px 20px;">
+            <div class="hero-content">
+                <div class="hero-badge">🏆 Ferramenta gratuita</div>
+                <h1>Comprar Direto ou <span>Com Pontos?</span></h1>
+                <p class="hero-description">Descubra se vale a pena comprar um produto mais caro pelo link do parceiro só para ganhar os pontos, calculando o Custo do Milheiro Gerado.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="sim-container">
+                <div class="sim-card">
+                    <form id="calcForm">
+
+                        <!-- Opção 1 -->
+                        <div class="sim-bonus-section" style="margin-top: 0;">
+                            <h2 class="sim-section-title">🛒 Opção 1: Comprar Direto (Mais Barato)</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                                Aquele preço matador que você achou no Google ou Buscapé, sem promoção de milhas.
+                            </p>
+                            <div class="sim-form-grid">
+                                <div class="sim-form-group">
+                                    <label for="precoDireto">Valor Total do Produto (Com frete)</label>
+                                    <div class="sim-input-wrapper">
+                                        <span class="sim-input-prefix">R$</span>
+                                        <input type="number" id="precoDireto" placeholder="3.000,00" step="0.01" required min="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Opção 2 -->
+                        <div class="sim-bonus-section">
+                            <h2 class="sim-section-title">🎁 Opção 2: Comprar pelo Link Parceiro</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                                Comprando pela parceria Livelo, Esfera, Smiles, etc, focando no acúmulo de pontos.
+                            </p>
+                            <div class="sim-form-grid">
+                                <div class="sim-form-group">
+                                    <label for="precoParceiro">Valor Total no Parceiro (Com frete)</label>
+                                    <div class="sim-input-wrapper">
+                                        <span class="sim-input-prefix">R$</span>
+                                        <input type="number" id="precoParceiro" placeholder="3.300,00" step="0.01" required min="0">
+                                    </div>
+                                </div>
+                                <div class="sim-form-group">
+                                    <label for="pontosPorReal">Promoção de Pontuação</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="pontosPorReal" placeholder="10" step="0.1" required min="0">
+                                        <span class="sim-input-suffix">pts / R$</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premissa -->
+                        <div class="sim-form-grid" style="margin-top: 24px; padding: 0 24px;">
+                            <div class="sim-form-group">
+                                <label for="valorMilheiroRef">Custo de Mercado do Milheiro</label>
+                                <div class="sim-input-wrapper">
+                                    <span class="sim-input-prefix">R$</span>
+                                    <input type="number" id="valorMilheiroRef" value="32.00" step="0.01" required min="0">
+                                </div>
+                                <small style="color:var(--text-secondary); font-size:0.75rem;">Para saber se você teve lucro, usaremos como base o milheiro Livelo a R$ 32,00. Pode alterar se desejar.</small>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; justify-content: center; margin-top: 32px;">
+                            Calcular Vantagem →
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultsSection" class="sim-card sim-hidden results-display">
+                    
+                    <div class="verdict-banner" id="verdictBanner">
+                        <h3 id="verdictTitle">Aguardando cálculo...</h3>
+                        <p id="verdictSubtitle">...</p>
+                    </div>
+
+                    <div class="strategy-box" style="margin-top: 24px;">
+                        <div class="strategy-header">Resumo da Matemática</div>
+                        
+                        <div class="strategy-row">
+                            <span>Valor pago a mais pela diferença:</span>
+                            <strong id="resDiferenca">R$ 0,00</strong>
+                        </div>
+                        <div class="strategy-row">
+                            <span>Total de pontos acumulados:</span>
+                            <strong id="resPontosTotais" style="color: var(--primary);">0 pts</strong>
+                        </div>
+                        <div class="strategy-row" style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.1);">
+                            <span>O seu "Custo do Milheiro" saiu por:</span>
+                            <strong id="resCustoMilheiro" style="font-size: 1.2rem;">R$ 0,00</strong>
+                        </div>
+                    </div>
+
+                    <!-- Disclaimer Section -->
+                    <div class="disclaimer-alert" id="disclaimerBox">
+                        <h4><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> Entenda o Custo do Ponto (CP)</h4>
+                        <p id="disclaimerText">
+                            <!-- Populated via JS -->
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>
