@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S6FGED1HT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8S6FGED1HT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passagem com Compra de Pontos | FaaalaPessoal</title>
+    <meta name="description"
+        content="Calcule o custo exato de uma emissão de passagem feita inteiramente através da compra de pontos ou milhas.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+
+<body>
+
+    {{> header}}
+
+    <main class="main">
+        <section class="hero" style="padding: 60px 24px 20px;">
+            <div class="hero-content">
+                <div class="hero-badge">🏆 Ferramenta gratuita</div>
+                <h1>Passagem com <span>Compra de Pontos</span></h1>
+                <p class="hero-description">Calcule o custo total da sua passagem ao comprar os pontos faltantes, e
+                    saiba exatamente quantos milheiros você precisará emitir.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="sim-container">
+                <div class="sim-card">
+                    <form id="calcForm">
+
+                        <div class="sim-bonus-section" style="margin-top: 0;">
+                            <h2 class="sim-section-title">✈️ Dados da Passagem e Pontos</h2>
+                            <div class="sim-form-grid">
+                                <div class="sim-form-group">
+                                    <label for="pontosNecessarios">Pontos Necessários para Emitir *</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="pontosNecessarios" placeholder="Ex: 52000" required
+                                            min="0">
+                                        <span class="sim-input-suffix">pts</span>
+                                    </div>
+                                </div>
+                                <div class="sim-form-group">
+                                    <label for="pontosPossui">Pontos que você já possui</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="pontosPossui" placeholder="Ex: 0" value="0" min="0">
+                                        <span class="sim-input-suffix">pts</span>
+                                    </div>
+                                    <small style="color:var(--text-secondary); font-size:0.75rem;">Deixe zero se for
+                                        comprar tudo.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sim-bonus-section">
+                            <h2 class="sim-section-title">💲 Dados da Compra</h2>
+                            <div class="sim-form-grid">
+                                <div class="sim-form-group">
+                                    <label for="prepBonificacao">Bonificação da Promoção (%) *</label>
+                                    <div class="sim-input-wrapper">
+                                        <input type="number" id="prepBonificacao" placeholder="Ex: 103" required min="0"
+                                            step="0.1">
+                                        <span class="sim-input-suffix">%</span>
+                                    </div>
+                                </div>
+                                <div class="sim-form-group">
+                                    <label for="precoMilheiro">Preço do Milheiro *</label>
+                                    <div class="sim-input-wrapper">
+                                        <span class="sim-input-prefix">R$</span>
+                                        <input type="number" id="precoMilheiro" placeholder="Ex: 35.00" required min="0"
+                                            step="0.01">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Linha de taxa de embarque, colocada aqui para alinhamento -->
+                            <div class="sim-form-grid" style="margin-top: 16px;">
+                                <div class="sim-form-group">
+                                    <label for="taxaEmbarque">Taxa de Embarque (Opcional)</label>
+                                    <div class="sim-input-wrapper">
+                                        <span class="sim-input-prefix">R$</span>
+                                        <input type="number" id="taxaEmbarque" placeholder="Ex: 150.00" value="0"
+                                            min="0" step="0.01">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; justify-content: center; margin-top: 32px;">
+                            Calcular Custo →
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultsSection" class="sim-card sim-hidden results-display">
+
+                    <div class="points-label">Custo Total da Passagem</div>
+                    <div id="resCustoTotal" class="points-result">R$ 0,00</div>
+
+                    <div class="strategy-box">
+                        <div class="strategy-header">Resumo / Extrato</div>
+
+                        <div class="strategy-row">
+                            <span>Quantidade a comprar (Milheiros):</span>
+                            <strong id="resMilheirosComprar" style="color: var(--primary);">0</strong>
+                        </div>
+                        <div class="strategy-row"
+                            style="margin-bottom: 12px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 12px;">
+                            <small id="resAvisoArredondamento"
+                                style="color: var(--warning); font-size: 0.85rem; display: block; width: 100%; line-height: 1.4;">
+                                * Valor arredondado para cima. As companhias só permitem compras em lotes fechados de
+                                1.000 pontos (1 milheiro).
+                            </small>
+                        </div>
+                        <div class="strategy-row">
+                            <span>Custo exclusivo dos pontos:</span>
+                            <strong id="resCustoMilhas">R$ 0,00</strong>
+                        </div>
+                        <div class="strategy-row">
+                            <span>Taxa de embarque inserida:</span>
+                            <strong id="resTaxaEmbarque">R$ 0,00</strong>
+                        </div>
+                        <div class="strategy-row"
+                            style="margin-top: 12px; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 12px;">
+                            <span>Custo do Milheiro Final (CPM):</span>
+                            <strong id="resCustoMilheiroFinal" style="color: var(--primary); font-size: 1.1rem;">R$
+                                0,00</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>
