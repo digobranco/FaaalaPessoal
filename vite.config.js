@@ -19,6 +19,7 @@ export default defineConfig({
                 'simulador-pontos': resolve(__dirname, 'simulador-pontos/index.html'),
                 'simulador-parcelado-ou-avista': resolve(__dirname, 'simulador-parcelado-ou-avista/index.html'),
                 'simulador-compra-pontos': resolve(__dirname, 'simulador-compra-pontos/index.html'),
+                'calculadora-passagem-pontos': resolve(__dirname, 'calculadora-passagem-pontos/index.html'),
                 //'promo-calendar': resolve(__dirname, 'promo-calendar/index.html'),
                 //'simulador-investimento': resolve(__dirname, 'simulador-investimento/index.html'),
             },
